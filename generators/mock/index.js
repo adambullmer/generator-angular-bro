@@ -5,6 +5,7 @@ var baseComponent      = require('../../lib/base-component'),
 
 generator = extend(true, {}, baseComponent, {
     componentType: 'Mock',
+    generateTest: false,
 
     writing: {
         component: function () {

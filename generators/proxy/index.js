@@ -3,6 +3,7 @@ var generators         = require('yeoman-generator'),
 
 module.exports = generators.Base.extend({
     componentType: 'Proxy',
+    generateTest: false,
 
     constructor: function () {
         generators.Base.apply(this, arguments);
