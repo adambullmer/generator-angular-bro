@@ -1,0 +1,17 @@
+{
+    "disallowMixedSpacesAndTabs": true,
+    "disallowTrailingWhitespace": true,
+    "validateIndentation": 4,
+    "validateLineBreaks": "LF",
+    "requireCurlyBraces": [
+        "if",
+        "else",
+        "for",
+        "while",
+        "do",
+        "try",
+        "catch",
+        "function",
+        "switch"
+    ]
+}

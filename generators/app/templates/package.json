@@ -1,0 +1,21 @@
+{
+  "name": "<%= hyphenName %>",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app/app.js",
+  "scripts": {
+    "pretest": "rm -rf .tmp",
+    "test": "ANGULAR_TEST=true broccoli build .tmp"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "angular-bro-app": "0.4.1",
+    "grunt": "0.4.5",
+    "grunt-broccoli": "0.4.1",
+    "grunt-bump": "0.7.0",
+    "grunt-contrib-clean": "1.0.0",
+    "grunt-exec": "0.4.6",
+    "grunt-express-server": "0.5.2"
+  }
+}

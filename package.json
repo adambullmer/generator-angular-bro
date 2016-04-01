@@ -1,0 +1,45 @@
+{
+  "name": "generator-angular-bro",
+  "version": "0.1.0",
+  "description": "Angular app scaffolding and build chain",
+  "main": "generators/app/index.js",
+  "files": [
+    "generators/app",
+    "generators/controller",
+    "generators/directive",
+    "generators/factory",
+    "generators/mock",
+    "generators/module",
+    "generators/provider",
+    "generators/proxy",
+    "generators/server",
+    "generators/service",
+    "generators/state",
+    "generators/template"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adambullmer/generator-angular-bro.git"
+  },
+  "keywords": [
+    "yeoman-generator",
+    "angular",
+    "broccoli",
+    "es6"
+  ],
+  "author": "Adam Bullmer <psycodrumfreak@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adambullmer/generator-angular-bro/issues"
+  },
+  "homepage": "https://github.com/adambullmer/generator-angular-bro#readme",
+  "dependencies": {
+    "extend": "^3.0.0",
+    "generator-node": "^1.10.0",
+    "underscore.string": "^3.3.4",
+    "yeoman-generator": "^0.22.5"
+  }
+}
