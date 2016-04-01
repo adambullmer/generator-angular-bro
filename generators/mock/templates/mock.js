@@ -1,6 +1,6 @@
 module.exports = function (app) {
     var express = require('express'),
-    router  = express.Router();
+        router  = express.Router();
 
     router.get('/', function (req, res) {
         res.send({
