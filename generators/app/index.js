@@ -5,7 +5,7 @@ module.exports = generators.Base.extend({
     constructor: function () {
         generators.Base.apply(this, arguments);
 
-        this.appName         = _.camelize(this.appname);
+        this.appName         = _.camelize(this.appname.replace('.', '-'));
         this.hyphenName      = _.dasherize(this.appName);
         this.friendlyAppName = _.titleize(_.humanize(this.appName));
     },
@@ -20,7 +20,10 @@ module.exports = generators.Base.extend({
             }];
 
         this.prompt(prompts, function (props) {
-            this.appName = props.appName;
+            this.appName         = props.appName.replace('.', '-');
+            this.appName         = _.camelize(this.appName);
+            this.hyphenName      = _.dasherize(this.appName);
+            this.friendlyAppName = _.titleize(_.humanize(this.appName));
 
             done();
         }.bind(this));
@@ -79,12 +82,16 @@ module.exports = generators.Base.extend({
                 this.destinationPath('app/app.js'),
                 this
             );
-        },
 
-        router: function () {
             this.fs.copyTpl(
                 this.templatePath('app/router.js'),
                 this.destinationPath('app/router.js'),
+                this
+            );
+
+            this.fs.copyTpl(
+                this.templatePath('app/exportable.js'),
+                this.destinationPath('app/' + this.hyphenName + '.js'),
                 this
             );
         },
