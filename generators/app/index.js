@@ -81,6 +81,14 @@ module.exports = generators.Base.extend({
             );
         },
 
+        router: function () {
+            this.fs.copyTpl(
+                this.templatePath('app/router.js'),
+                this.destinationPath('app/router.js'),
+                this
+            );
+        },
+
         assets: function () {
             this.fs.copy(
                 this.templatePath('assets/.gitkeep'),

@@ -1,5 +1,6 @@
 import angular from 'angular';
 <% if (fromState === true) { -%>
+import 'app/scripts/templates';
 import { state } from 'app/<%= componentPath %>/state';
 <% } -%>
 <% if (fromDirective === true) { -%>
@@ -18,23 +19,23 @@ import { factory } from 'app/<%= componentPath %>/factory';
 import { provider } from 'app/<%= componentPath %>/provider';
 <% } -%>
 
-export default angular.module('<%= componentName %>', [])
+export default angular.module('<%= componentName %>', [<%- (fromState === true) ? "\n    'templates-app'\n" : '' %>])
 <% if (fromState === true) { -%>
-    .config(state)
+.config(state)
 <% } -%>
 <% if (fromDirective === true) { -%>
-    .directive('<%= componentName %>', directive)
+.directive('<%= componentName %>', directive)
 <% } -%>
 <% if (fromController === true) { -%>
-    .controller('<%= classComponentName %>Ctrl', controller)
+.controller('<%= classComponentName %>Ctrl', controller)
 <% } -%>
 <% if (fromService === true) { -%>
-    .service('<%= classComponentName %>', service)
+.service('<%= classComponentName %>', service)
 <% } -%>
 <% if (fromFactory === true) { -%>
-    .factory('<%= componentName %>', factory)
+.factory('<%= componentName %>', factory)
 <% } -%>
 <% if (fromProvider === true) { -%>
-    .provider('<%= componentName %>', provider)
+.provider('<%= componentName %>', provider)
 <% } -%>
 ; // Ends the module declaration
