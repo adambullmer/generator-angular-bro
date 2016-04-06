@@ -1,15 +1,9 @@
 import angular from 'angular';
-import config from 'config/environment';
-import 'app/scripts/templates';
+import 'app/router';
 
 var app = angular.module('<%= appName %>', [
-    'templates-app'
-]).config(function ($locationProvider) {
-    "ngInject";
-    "use strict";
-
-    $locationProvider.html5Mode(config.html5Mode);
-});
+    'router'
+]);
 
 angular.element(document).ready(function () {
     angular.bootstrap(document, [
