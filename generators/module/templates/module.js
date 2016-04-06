@@ -30,12 +30,12 @@ export default angular.module('<%= componentName %>', [<%- (fromState === true) 
 .controller('<%= classComponentName %>Ctrl', controller)
 <% } -%>
 <% if (fromService === true) { -%>
-.service('<%= classComponentName %>', service)
+.service('<%= classComponentName %>Service', service)
 <% } -%>
 <% if (fromFactory === true) { -%>
-.factory('<%= componentName %>', factory)
+.factory('<%= componentName %>Factory', factory)
 <% } -%>
 <% if (fromProvider === true) { -%>
-.provider('<%= componentName %>', provider)
+.provider('<%= componentName %>Provider', provider)
 <% } -%>
 ; // Ends the module declaration
