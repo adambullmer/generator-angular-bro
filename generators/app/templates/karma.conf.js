@@ -11,7 +11,7 @@ module.exports = function (config) {
     var configuration = {
         browsers         : [ 'PhantomJS' ],
         frameworks       : [ 'jasmine' ],
-        reporters        : [ 'dots', 'coverage'],
+        reporters        : [ 'dots', 'coverage', 'kjhtml'],
         preprocessors    : { 'app/**/*.js': 'coverage' },
         coverageReporter : { type: 'text' }
     };

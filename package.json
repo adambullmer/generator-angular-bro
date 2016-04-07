@@ -1,6 +1,6 @@
 {
   "name": "generator-angular-bro",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Angular app scaffolding and build chain",
   "main": "generators/app/index.js",
   "files": [
