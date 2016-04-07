@@ -7,9 +7,9 @@ describe('<%= classComponentName %> <%= componentType %>', function () {
 
     beforeEach(module('<%= componentName %>'));
 
-    beforeEach(inject(function (_<%= componentName %>_) {
+    beforeEach(inject(function (_<%= componentName %>Factory_) {
         // The injector unwraps the underscores (_) from around the parameter names when matching
-        $factory = _<%= componentName %>_;
+        $factory = _<%= componentName %>Factory_;
     }));
 
     it('exists', inject(function () {

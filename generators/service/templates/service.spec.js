@@ -7,9 +7,9 @@ describe('<%= classComponentName %> <%= componentType %>', function () {
 
     beforeEach(module('<%= componentName %>'));
 
-    beforeEach(inject(function (_<%= classComponentName %>_) {
+    beforeEach(inject(function (_<%= classComponentName %>Service_) {
         // The injector unwraps the underscores (_) from around the parameter names when matching
-        $service = _<%= classComponentName %>_;
+        $service = _<%= classComponentName %>Service_;
     }));
 
     it('exists', inject(function () {

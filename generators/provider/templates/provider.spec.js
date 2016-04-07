@@ -7,9 +7,9 @@ describe('<%= classComponentName %> <%= componentType %>', function () {
 
     beforeEach(module('<%= componentName %>'));
 
-    beforeEach(inject(function (_<%= componentName %>_) {
+    beforeEach(inject(function (_<%= componentName %>Provider_) {
         // The injector unwraps the underscores (_) from around the parameter names when matching
-        $provider = _<%= componentName %>_;
+        $provider = _<%= componentName %>Provider_;
         console.log($provider);
     }));
 
