@@ -1,4 +1,4 @@
-var proxyPath = '<%= componentPath %>';
+var proxyPath = '<%= proxyPath %>';
 
 module.exports = function (app) {
     // For options, see:

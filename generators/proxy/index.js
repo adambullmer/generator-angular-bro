@@ -19,20 +19,27 @@ module.exports = generators.Base.extend({
             desc     : this.componentType + ' target path and name (e.g. `http://localhost/api/v1/user/`)',
             required : false
         });
-
-        if (this.componentPath !== undefined) {
-            this.componentName = parseComponentName.call(this, this.componentPath);
-        }
     },
 
     ask: function () {
         var prompts = [{
                 type     : 'input',
-                name     : 'componentPath',
-                message  : this.componentType + ' name',
-                validate : function (componentPath) {
-                    if (!componentPath) {
-                        return this.componentType + ' name is required';
+                name     : 'proxyPath',
+                message  : this.componentType + ' Path',
+                validate : function (proxyPath) {
+                    if (!proxyPath) {
+                        return this.componentType + ' path is required';
+                    }
+
+                    return true;
+                }.bind(this)
+            }, {
+                type     : 'input',
+                name     : 'proxyTarget',
+                message  : this.componentType + ' Target',
+                validate : function (proxyTarget) {
+                    if (!proxyTarget) {
+                        return this.componentType + ' target is required';
                     }
 
                     return true;
@@ -40,14 +47,14 @@ module.exports = generators.Base.extend({
             }],
             done;
 
-        if (this.componentName !== undefined) {
+        if (this.proxyPath !== undefined) {
             return;
         }
 
         done = this.async();
         this.prompt(prompts, function (props) {
-            this.componentPath = props.componentPath;
-            this.componentName = parseComponentName.call(this, props.componentPath);
+            this.proxyPath   = props.proxyPath;
+            this.proxyTarget = props.proxyTarget;
             done();
         }.bind(this));
     },
@@ -57,8 +64,8 @@ module.exports = generators.Base.extend({
             var componentLowerCase = this.componentType.toLowerCase();
 
             this.fs.copyTpl(
-                this.templatePath(componentLowerCase + '.js'),
-                this.destinationPath('app/' + this.componentPath + '/' + componentLowerCase + '.js'),
+                this.templatePath('proxy.js'),
+                this.destinationPath('server/proxies/' + this.proxyPath + '.js'),
                 this
             );
         }
