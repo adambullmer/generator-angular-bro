@@ -52,5 +52,6 @@
     "devel"         : false,
     "jasmine"       : false,
     "jquery"        : false,
+    "mocha"         : true,
     "node"          : true
 }

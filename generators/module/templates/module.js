@@ -1,6 +1,8 @@
 import angular from 'angular';
-<% if (fromState === true) { -%>
+<% if (fromState === true || fromDirective === true) { -%>
 import 'app/scripts/templates';
+<% } -%>
+<% if (fromState === true) { -%>
 import { state } from 'app/<%= componentPath %>/state';
 <% } -%>
 <% if (fromDirective === true) { -%>
@@ -19,7 +21,7 @@ import { factory } from 'app/<%= componentPath %>/factory';
 import { provider } from 'app/<%= componentPath %>/provider';
 <% } -%>
 
-export default angular.module('<%= componentName %>', [<%- (fromState === true) ? "\n    'templates-app'\n" : '' %>])
+export default angular.module('<%= componentName %>', [<%- (fromState === true || fromDirective === true) ? "\n    'templates-app'\n" : '' %>])
 <% if (fromState === true) { -%>
 .config(state)
 <% } -%>
