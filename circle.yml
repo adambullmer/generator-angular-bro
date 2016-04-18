@@ -5,15 +5,19 @@ machine:
 dependencies:
   pre:
     - rm -rf node_modules
-    - rm -rf bower_components
     - npm cache clean
-    - bower cache clean
     - npm config set spin=false
   override:
-    - npm install --global broccoli-cli
+    - npm install --global yo
     - npm install
-    - bower install
 
 test:
   override:
     - npm test
+
+deployment:
+  npm:
+    branch: master
+    commands:
+      - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+      - npm publish

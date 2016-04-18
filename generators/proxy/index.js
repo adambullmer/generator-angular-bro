@@ -1,5 +1,4 @@
-var generators         = require('yeoman-generator'),
-    parseComponentName = require('../../lib/parse-component-name');
+var generators         = require('yeoman-generator');
 
 module.exports = generators.Base.extend({
     componentType: 'Proxy',
@@ -61,8 +60,6 @@ module.exports = generators.Base.extend({
 
     writing: {
         component: function () {
-            var componentLowerCase = this.componentType.toLowerCase();
-
             this.fs.copyTpl(
                 this.templatePath('proxy.js'),
                 this.destinationPath('server/proxies/' + this.proxyPath + '.js'),

@@ -5,7 +5,7 @@ var generators         = require('yeoman-generator'),
 module.exports = generators.Base.extend({
     componentType: 'Directive',
 
-    constructor: function (componentPath, options) {
+    constructor: function (/*componentPath, options*/) {
         generators.Base.apply(this, arguments);
 
         this.argument('componentPath', {
