@@ -5,7 +5,13 @@ var path = require('path'),
 
 describe('generator-angular-bro:server', function () {
     before(function (done) {
-        helpers.run(path.join(__dirname, '../generators/server')).on('end', done);
+        helpers.run(path.join(__dirname, '../generators/server'))
+            .on('ready', function (gen) {
+                gen.fs.writeJSON('package.json', {
+                    devDependencies: {}
+                });
+            })
+            .on('end', done);
     });
 
     it('creates files', function () {
@@ -14,5 +20,15 @@ describe('generator-angular-bro:server', function () {
             'server/mocks/.gitkeep',
             'server/proxies/.gitkeep'
         ]);
+    });
+
+    describe.skip('dependencies', function () {
+        it('installs it\'s dependencies', function () {
+            assert.jsonFileContent('package.json', {
+                devDependencies: {
+                    morgan: "1.7.0"
+                }
+            });
+        });
     });
 });

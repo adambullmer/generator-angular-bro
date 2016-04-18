@@ -15,4 +15,16 @@ describe('generator-angular-bro:module', function () {
             'app/test-module/module.js'
         ]);
     });
+
+    describe('generated module', function () {
+        var modulePath = 'app/test-module/module.js';
+
+        it('has the correct module name', function () {
+            assert.fileContent(modulePath, /export default angular.module\('testModule', \[\]\)/);
+        });
+
+        it('returns a module definition', function () {
+            assert.fileContent(modulePath, /export default angular.module\('(\w)+', \[\]\)\n/);
+        });
+    });
 });

@@ -1,9 +1,10 @@
-var generators         = require('yeoman-generator'),
-    parseComponentName = require('../../lib/parse-component-name'),
-    _                  = require('underscore.string');
+var _                  = require('underscore.string'),
+    generators         = require('yeoman-generator'),
+    parseComponentName = require('../../lib/parse-component-name');
 
 module.exports = generators.Base.extend({
     componentType: 'Directive',
+    generateTest: true,
 
     constructor: function (/*componentPath, options*/) {
         generators.Base.apply(this, arguments);
@@ -86,14 +87,6 @@ module.exports = generators.Base.extend({
             );
         },
 
-        // module: function () {
-        //     this.composeWith('angular-bro:module', {
-        //         args: [this.componentPath]
-        //     }, {
-        //         link: 'weak'
-        //     });
-        // },
-
         controller: function () {
             this.composeWith('angular-bro:controller', {
                 args: [this.componentPath],
@@ -101,6 +94,7 @@ module.exports = generators.Base.extend({
                     fromDirective: true
                 }
             }, {
+                local: require.resolve('../controller'),
                 link: 'weak'
             });
         },
@@ -109,6 +103,7 @@ module.exports = generators.Base.extend({
             this.composeWith('angular-bro:template', {
                 args: [this.componentPath]
             }, {
+                local: require.resolve('../template'),
                 link: 'weak'
             });
         }

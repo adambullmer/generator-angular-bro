@@ -1,16 +1,17 @@
-var generators         = require('yeoman-generator'),
-    parseComponentName = require('../../lib/parse-component-name'),
-    _                  = require('underscore.string');
+var _                  = require('underscore.string'),
+    generators         = require('yeoman-generator'),
+    parseComponentName = require('../../lib/parse-component-name');
 
 module.exports = generators.Base.extend({
     componentType: 'State',
+    generateTest: true,
 
-    constructor: function () {
+    constructor: function (/*componentPath, options*/) {
         generators.Base.apply(this, arguments);
 
         this.argument('componentPath', {
             type     : String,
-            desc     : this.componentType + ' relative path and name (e.g. `user` or a nested `account/user`)',
+            desc     : this.componentType + ' path and name (e.g. `user` or a nested `account/user`)',
             required : false
         });
 
@@ -18,6 +19,9 @@ module.exports = generators.Base.extend({
             this.componentPath = _.dasherize(this.componentPath);
 
             this.componentName = parseComponentName.call(this, this.componentPath);
+
+            this.hyphenComponentName = _.dasherize(this.componentName);
+
             this.classComponentName = _.classify(this.componentName);
             this.componentName = _.camelize(this.componentName);
         }
@@ -48,6 +52,9 @@ module.exports = generators.Base.extend({
             this.componentPath = _.dasherize(this.componentPath);
 
             this.componentName = parseComponentName.call(this, this.componentPath);
+
+            this.hyphenComponentName = _.dasherize(this.componentName);
+
             this.classComponentName = _.classify(this.componentName);
             this.componentName = _.camelize(this.componentName);
 
@@ -66,13 +73,19 @@ module.exports = generators.Base.extend({
             );
         },
 
-        // module: function () {
-        //     this.composeWith('angular-bro:module', {
-        //         args: [this.componentPath]
-        //     }, {
-        //         link: 'weak'
-        //     });
-        // },
+        componentTest: function () {
+            var componentLowerCase = this.componentType.toLowerCase();
+
+            if (this.generateTest === false) {
+                return;
+            }
+
+            this.fs.copyTpl(
+                this.templatePath(componentLowerCase + '.spec.js'),
+                this.destinationPath('tests/unit/' + this.componentPath + '/' + componentLowerCase + '.spec.js'),
+                this
+            );
+        },
 
         controller: function () {
             this.composeWith('angular-bro:controller', {
@@ -81,6 +94,7 @@ module.exports = generators.Base.extend({
                     fromState: true
                 }
             }, {
+                local: require.resolve('../controller'),
                 link: 'weak'
             });
         },
@@ -89,6 +103,7 @@ module.exports = generators.Base.extend({
             this.composeWith('angular-bro:template', {
                 args: [this.componentPath]
             }, {
+                local: require.resolve('../template'),
                 link: 'weak'
             });
         }
