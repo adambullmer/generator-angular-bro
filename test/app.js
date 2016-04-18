@@ -13,6 +13,7 @@ describe('generator-angular-bro:app', function () {
     it('creates files', function () {
         assert.file([
             '.jscsrc',
+            '.jshintrc',
             'bower.json',
             'Brocfile.js',
             'circle.yml',

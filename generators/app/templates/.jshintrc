@@ -1,0 +1,15 @@
+{
+    "curly"         : true,
+    "eqeqeq"        : true,
+    "esversion"     : 6,
+    "futurehostile" : true,
+    "undef"         : true,
+    "unused"        : true,
+
+    "debug"         : false,
+
+    "browser"       : true,
+    "devel"         : false,
+    "node"          : true,
+    "jasmine"       : true
+}

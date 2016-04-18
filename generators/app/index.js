@@ -36,6 +36,11 @@ module.exports = generators.Base.extend({
                 this.destinationPath('.jscsrc')
             );
 
+            this.fs.copy(
+                this.templatePath('.jshintrc'),
+                this.destinationPath('.jshintrc')
+            );
+
             this.fs.copyTpl(
                 this.templatePath('bower.json'),
                 this.destinationPath('bower.json'),

@@ -53,7 +53,7 @@ Below is a list of commands and a brief description of what they do
 - `yo angular-bro:proxy <path/to/url> <http://domain.com/path/to/proxy>` Generates a server proxy to send requests from `<path/to/url>` to `<http://domain.com/path/to/proxy>`
   - If you have a common api base path, you should omit it in the above command, and add it to the resulting file
     - e.x. `/api/v1/users` should just be `/users` in the above command
-```
+
 
 ## Project Structure
 
