@@ -1,6 +1,6 @@
 {
   "name": "generator-angular-bro",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Angular app scaffolding and build chain",
   "main": "generators/app/index.js",
   "files": [
@@ -49,6 +49,7 @@
     "grunt-jscs": "^2.8.0",
     "grunt-mocha-test": "^0.12.7",
     "mocha": "^2.4.5",
+    "sinon": "^1.17.3",
     "yeoman-assert": "^2.2.0",
     "yeoman-test": "^1.1.0"
   }

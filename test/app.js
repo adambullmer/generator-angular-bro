@@ -37,4 +37,27 @@ describe('generator-angular-bro:app', function () {
             'tests/unit/.gitkeep'
         ]);
     });
+
+    describe('templates the app name', function () {
+        it('app/app.js', function () {
+            assert.fileContent('app/app.js', /\nimport testAppModule from 'app\/test-app';\n/);
+            assert.fileContent('app/app.js', /\n    testAppModule.name\n/);
+        });
+
+        it('app/exportable.js', function () {
+            assert.fileContent('app/test-app.js', /\nexport default angular\.module\('testApp', \[\]\);\n$/);
+        });
+
+        it('bower.json', function () {
+            assert.fileContent('bower.json', /\n  "name": "test-app",\n/);
+        });
+
+        it('index.html', function () {
+            assert.fileContent('index.html', /\n        <title>Test App<\/title>\n/);
+        });
+
+        it('package.json', function () {
+            assert.fileContent('package.json', /\n  "name": "test-app",\n/);
+        });
+    });
 });
