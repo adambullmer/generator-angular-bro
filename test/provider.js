@@ -26,7 +26,7 @@ describe('generator-angular-bro:provider', function () {
         });
 
         it('uses the provider', function () {
-            assert.fileContent(modulePath, /.provider\('testModuleProvider', provider\)/);
+            assert.fileContent(modulePath, /.provider\('testModule', provider\)/);
         });
     });
 });

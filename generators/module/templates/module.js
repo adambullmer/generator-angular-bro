@@ -38,6 +38,6 @@ export default angular.module('<%= componentName %>', [<%- (fromState === true |
 .factory('<%= componentName %>Factory', factory)
 <% } -%>
 <% if (fromProvider === true) { -%>
-.provider('<%= componentName %>Provider', provider)
+.provider('<%= componentName %>', provider)
 <% } -%>
 ; // Ends the module declaration

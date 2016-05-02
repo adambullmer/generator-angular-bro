@@ -7,11 +7,13 @@ describe('<%= classComponentName %> <%= componentType %>', function () {
 
     beforeEach(module('<%= componentName %>'));
 
-    beforeEach(inject(function (_<%= componentName %>Provider_) {
-        // The injector unwraps the underscores (_) from around the parameter names when matching
-        $provider = _<%= componentName %>Provider_;
-        console.log($provider);
-    }));
+    beforeEach(function () {
+        module(function (<%= componentName %>Provider) {
+            $provider = <%= componentName %>Provider;
+        });
+    });
+
+    beforeEach(inject());
 
     it('exists', inject(function () {
         expect($provider).toBeDefined();
