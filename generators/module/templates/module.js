@@ -21,7 +21,7 @@ import { factory } from 'app/<%= componentPath %>/factory';
 import { provider } from 'app/<%= componentPath %>/provider';
 <% } -%>
 
-export default angular.module('<%= componentName %>', [<%- (fromState === true || fromDirective === true) ? "\n    'templates-app'\n" : '' %>])
+export default angular.module('<%= componentName %>', [<%- (fromState === true) ? "\n    'ui.router'," : "" %><%- (fromState === true || fromDirective === true) ? "\n    'templates-app'\n" : '' %>])
 <% if (fromState === true) { -%>
 .config(state)
 <% } -%>
