@@ -5,6 +5,7 @@ describe('<%= classComponentName %> <%= componentType %>', function () {
 
     var $controller;
 
+    <%- (fromState === true) ? "beforeEach(module('ui.router'));" : '' %>
     beforeEach(module('<%= componentName %>'));
 
     beforeEach(inject(function (_$controller_) {
