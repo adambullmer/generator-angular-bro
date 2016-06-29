@@ -8,6 +8,8 @@ module.exports = function (grunt) {
             break;
         case 'development':
             break;
+        case 'test':
+            break;
         default:
             console.log('Could not map environment `' + environment + '`');
             console.log('Defaulting to `development`');
@@ -74,23 +76,62 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', 'Builds the angular app.', 'build');
 
-    grunt.registerTask('build', 'Builds the angular app', 'broccoli:dist:build');
+    /**
+     * Anything that is required for the app to be built should happen here.
+     */
+    grunt.registerTask('prebuild', 'Preps the environment for the build.', [
+        'clean'
+    ]);
 
-    grunt.registerTask('serve', 'Builds and launches a server for the app.', 'server');
+    /**
+     * Build routine with pre and post hooks. Any modifications should happen in either the
+     * `prebuild` or `postbuild` tasks.
+     */
+    grunt.registerTask('build', 'Builds the angular app.', [
+        'prebuild',
+        'broccoli:dist:build',
+        'postbuild'
+    ]);
+
+    /**
+     * Anything that is required for the app to be served / deployed should happen here.
+     */
+    grunt.registerTask('postbuild', 'Post processing of the built angular app.', [
+    ]);
+
+
+    /**
+     * Anything that is required for the app to be built and served should happen here.
+     */
+    grunt.registerTask('preserver', 'Prepwork for the server.', [
+        'prebuild'
+    ]);
+
+    /**
+     * Server routine with pre hooks. Any modifications should happen in the `preserver` task.
+     * NOTE: There is not post hook as the last task is a forever running task, and any future
+     * task wouldn't ever be run.
+     */
+    grunt.registerTask('serve',  'Builds and launches a server for the app.', 'server');
     grunt.registerTask('server', 'Builds and launches a server for the app.', function () {
         process.env.ANGULAR_SERVER   = true;
         process.env.ANGULAR_DEST_DIR = grunt.config('config').destDir;
 
         grunt.task.run([
-            'clean',
+            'preserver',
             'express:server'
         ]);
     });
 
+    /**
+     * Test prepwork goes here. In general you shouldn't need to modify this task, but rather update
+     * the `prebuild` step.
+     */
     grunt.registerTask('test', 'Builds and runs unit tests.', function () {
         var broccoliType = 'build';
 
         process.env.ANGULAR_TEST = true;
+        process.env.ANGULAR_ENV  = 'test';
 
         if (!!grunt.option('server')) {
             broccoliType = 'server';
