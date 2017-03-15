@@ -4,7 +4,8 @@ module.exports = function (environment) {
     var ENV = {
         environment: environment,
         html5Mode: true,
-        routes: {}
+        overrideConfig: true,
+        routes: {},
     };
 
     if (environment === 'development') {
