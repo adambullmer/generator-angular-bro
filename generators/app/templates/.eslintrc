@@ -1,0 +1,39 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "globalReturn": false,
+      "impliedStrict": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "jasmine": true,
+    "node": true
+  },
+  "globals": {},
+  "rules": {
+    "curly": [
+      "error",
+      "all"
+    ],
+    "eqeqeq": "error",
+    "no-undef": "error",
+    "no-unused-vars": "error",
+    "no-debugger": "off",
+    "no-mixed-spaces-and-tabs": "error",
+    "no-trailing-spaces": "error",
+    "indent": [
+      "error",
+      4,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ]
+  }
+}
