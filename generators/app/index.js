@@ -58,12 +58,6 @@ module.exports = generators.Base.extend({
                 this.destinationPath('Gruntfile.js')
             );
 
-            this.fs.copyTpl(
-                this.templatePath('index.html'),
-                this.destinationPath('index.html'),
-                this
-            );
-
             this.fs.copy(
                 this.templatePath('karma.conf.js'),
                 this.destinationPath('karma.conf.js')
@@ -80,6 +74,12 @@ module.exports = generators.Base.extend({
             this.fs.copyTpl(
                 this.templatePath('app/app.js'),
                 this.destinationPath('app/app.js'),
+                this
+            );
+
+            this.fs.copyTpl(
+                this.templatePath('app/index.html'),
+                this.destinationPath('app/index.html'),
                 this
             );
 
