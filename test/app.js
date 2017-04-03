@@ -12,8 +12,7 @@ describe('generator-angular-bro:app', function () {
 
     it('creates files', function () {
         assert.file([
-            '.jscsrc',
-            '.jshintrc',
+            '.eslintrc',
             'bower.json',
             'Brocfile.js',
             'circle.yml',
@@ -52,8 +51,8 @@ describe('generator-angular-bro:app', function () {
             assert.fileContent('bower.json', /\n  "name": "test-app",\n/);
         });
 
-        it('index.html', function () {
-            assert.fileContent('index.html', /\n        <title>Test App<\/title>\n/);
+        it('app/index.html', function () {
+            assert.fileContent('app/index.html', /\n        <title>Test App<\/title>\n/);
         });
 
         it('package.json', function () {
