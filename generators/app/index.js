@@ -32,6 +32,11 @@ module.exports = generators.Base.extend({
     writing: {
         root: function () {
             this.fs.copy(
+                this.templatePath('.babelrc'),
+                this.destinationPath('.babelrc')
+            );
+
+            this.fs.copy(
                 this.templatePath('.eslintrc'),
                 this.destinationPath('.eslintrc')
             );
