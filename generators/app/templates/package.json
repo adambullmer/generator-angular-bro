@@ -10,7 +10,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "angular-bro-app": "~0.11.0",
+    "angular-bro-app": "~0.11.1",
+    "babel-preset-es2015": "^6.24.1",
     "grunt": "^1.0.1",
     "grunt-broccoli": "^0.4.1",
     "grunt-bump": "^0.8.0",

@@ -12,6 +12,7 @@ describe('generator-angular-bro:app', function () {
 
     it('creates files', function () {
         assert.file([
+            '.babelrc',
             '.eslintrc',
             'bower.json',
             'Brocfile.js',
