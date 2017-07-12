@@ -5,6 +5,7 @@ var path = require('path'),
 
 describe('generator-angular-bro:app', function () {
     before(function (done) {
+        this.timeout(4000);
         helpers.run(path.join(__dirname, '../generators/app'))
             .withPrompts({appName: 'testApp'})
             .on('end', done);
