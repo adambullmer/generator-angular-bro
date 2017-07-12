@@ -8,7 +8,7 @@ jobs:
             - checkout
             - run:
                 name: update-npm
-                command: 'sudo npm install -g npm@latest'
+                command: 'sudo npm install -g npm@^4'
             - run:
                 name: install-yeoman
                 command: 'sudo npm install -g yo'
