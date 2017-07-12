@@ -34,7 +34,7 @@ jobs:
                 at: /generator-angular-bro
             - run:
                 name: unit-tests
-                command: npm run test -- --reporter mocha-junit-reporter --reporter-ptions mochaFile=$(pwd)/junit/test-results.xml
+                command: npm run test -- --reporter mocha-junit-reporter --reporter-options mochaFile=$(pwd)/junit/test-results.xml
             - run:
                 name: collect-coverage
                 command: npm run coverage -- --report-dir coverage/
