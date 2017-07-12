@@ -9,9 +9,6 @@ jobs:
             - run:
                 name: update-npm
                 command: 'sudo npm install -g npm@^4'
-            - run:
-                name: install-yeoman
-                command: 'sudo npm install -g yo@^1'
             - restore_cache:
                 key: dependency-cache-{{ checksum "package.json" }}
             - run:
