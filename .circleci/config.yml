@@ -37,7 +37,7 @@ jobs:
                 command: mkdir junit
             - run:
                 name: unit-tests
-                command: npm run test -- --reporter xunit | grep '<' > /generator-angular-bro/junit/junit.xml
+                command: MOCHA_FILE=$CIRCLE_TEST_REPORTS/junit/test-results.xml npm run test -- --reporter mocha-junit-reporter
             - run:
                 name: collect-coverage
                 command: npm run coverage -- --report-dir coverage/

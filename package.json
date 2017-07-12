@@ -51,6 +51,7 @@
     "coveralls": "^2.13.1",
     "mocha": "^3.2.0",
     "mocha-eslint": "^3.0.1",
+    "mocha-junit-reporter": "^1.13.0",
     "nyc": "^11.0.3",
     "sinon": "^1.17.3",
     "yeoman-assert": "^2.2.0",
