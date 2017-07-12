@@ -13,7 +13,9 @@ dependencies:
 
 test:
   override:
-    - npm test
+    - npm run test -- --reporter mocha-junit-reporter --reporter-options mochaFile=${CIRCLE_TEST_REPORTS}/junit.xml
+    - npm run coverage -- --report-dir ${CIRCLE_TEST_REPORTS}/coverage/
+    - npm run coveralls
 
 deployment:
   npm:

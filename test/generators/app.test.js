@@ -1,12 +1,11 @@
-'use strict';
-var path = require('path'),
+const path = require('path'),
     assert = require('yeoman-assert'),
     helpers = require('yeoman-test');
 
 describe('generator-angular-bro:app', function () {
     before(function (done) {
         this.timeout(4000);
-        helpers.run(path.join(__dirname, '../generators/app'))
+        helpers.run(path.join(__dirname, '../../generators/app'))
             .withPrompts({appName: 'testApp'})
             .on('end', done);
     });

@@ -1,11 +1,10 @@
-'use strict';
-var path = require('path'),
+const path = require('path'),
     assert = require('yeoman-assert'),
     helpers = require('yeoman-test');
 
 describe('generator-angular-bro:server', function () {
     before(function (done) {
-        helpers.run(path.join(__dirname, '../generators/server'))
+        helpers.run(path.join(__dirname, '../../generators/server'))
             .on('ready', function (gen) {
                 gen.fs.writeJSON('package.json', {
                     devDependencies: {}

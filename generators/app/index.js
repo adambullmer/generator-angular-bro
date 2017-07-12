@@ -5,13 +5,13 @@ module.exports = generators.Base.extend({
     constructor: function () {
         generators.Base.apply(this, arguments);
 
-        this.appName         = _.camelize(this.appname.replace('.', '-'));
-        this.hyphenName      = _.dasherize(this.appName);
+        this.appName = _.camelize(this.appname.replace('.', '-'));
+        this.hyphenName = _.dasherize(this.appName);
         this.friendlyAppName = _.titleize(_.humanize(this.appName));
     },
 
     ask: function () {
-        var done    = this.async(),
+        var done = this.async(),
             prompts = [{
                 type: 'input',
                 name: 'appName',
@@ -20,9 +20,9 @@ module.exports = generators.Base.extend({
             }];
 
         this.prompt(prompts, function (props) {
-            this.appName         = props.appName.replace('.', '-');
-            this.appName         = _.camelize(this.appName);
-            this.hyphenName      = _.dasherize(this.appName);
+            this.appName = props.appName.replace('.', '-');
+            this.appName = _.camelize(this.appName);
+            this.hyphenName = _.dasherize(this.appName);
             this.friendlyAppName = _.titleize(_.humanize(this.appName));
 
             done();

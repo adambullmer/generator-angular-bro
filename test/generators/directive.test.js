@@ -1,11 +1,10 @@
-'use strict';
-var path = require('path'),
+const path = require('path'),
     assert = require('yeoman-assert'),
     helpers = require('yeoman-test');
 
 describe('generator-angular-bro:directive', function () {
     before(function (done) {
-        helpers.run(path.join(__dirname, '../generators/directive'))
+        helpers.run(path.join(__dirname, '../../generators/directive'))
             .withPrompts({componentPath: 'testModule'})
             .on('end', done);
     });
@@ -22,7 +21,7 @@ describe('generator-angular-bro:directive', function () {
     });
 
     describe('generated module', function () {
-        var modulePath = 'app/test-module/module.js';
+        const modulePath = 'app/test-module/module.js';
 
         it('imports the directive', function () {
             assert.fileContent(modulePath, /import \{ directive \} from 'app\/test-module\/directive';/);
@@ -50,7 +49,7 @@ describe('generator-angular-bro:directive', function () {
     });
 
     describe('generated directive', function () {
-        var directivePath = 'app/test-module/directive.js';
+        const directivePath = 'app/test-module/directive.js';
 
         it('imports the controller', function () {
             assert.fileContent(directivePath, /import \{ controller \} from 'app\/test-module\/controller';/);

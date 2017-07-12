@@ -1,0 +1,132 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "globalReturn": false,
+      "impliedStrict": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "jasmine": true,
+    "jquery": true,
+    "node": true
+  },
+  "globals": {
+    "angular": true,
+    "_": true,
+    "JSON": true
+  },
+  "rules": {
+    "no-bitwise": 0,
+    "curly": [
+      2,
+      "all"
+    ],
+    "eqeqeq": 2,
+    "guard-for-in": 2,
+    "no-iterator": 2,
+    "no-use-before-define": [
+      2,
+      {
+        "functions": false
+      }
+    ],
+    "no-caller": 2,
+    "no-new": 2,
+    "no-shadow": 0,
+    "no-extra-parens": 0,
+    "strict": 0,
+    "no-undef": 2,
+    "no-unused-vars": 2,
+    "no-var": 0,
+    "semi": 0,
+    "no-cond-assign": 0,
+    "no-debugger": 0,
+    "no-eq-null": 0,
+    "no-eval": 0,
+    "no-unused-expressions": 0,
+    "block-scoped-var": 0,
+    "no-loop-func": 0,
+    "no-plusplus": 0,
+    "no-proto": 0,
+    "no-script-url": 0,
+    "no-new-func": 0,
+    "no-new-wrappers": 0,
+    "no-invalid-this": 0,
+    "linebreak-style": [
+      2,
+      "unix"
+    ],
+    "comma-style": [
+      2,
+      "last"
+    ],
+    "dot-notation": 0,
+    "camelcase": 0,
+    "indent": [
+      2,
+      4,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "wrap-iife": 0,
+    "max-len": 0,
+    "no-multi-str": 0,
+    "new-cap": 0,
+    "no-empty": 0,
+    "quotes": 0,
+    "no-with": 2,
+    "brace-style": [
+      2,
+      "1tbs",
+      {
+        "allowSingleLine": true
+      }
+    ],
+    "no-mixed-spaces-and-tabs": 2,
+    "quote-props": [
+      2,
+      "as-needed"
+    ],
+    "no-trailing-spaces": 2,
+    "one-var": [
+      2,
+      "always"
+    ],
+    "newline-after-var": [
+      2,
+      "always"
+    ],
+    "keyword-spacing": [
+      2,
+      {}
+    ],
+    "spaced-comment": [
+      2,
+      "always"
+    ],
+    "space-infix-ops": 2,
+    "operator-linebreak": [
+      2,
+      "after"
+    ],
+    "space-before-blocks": [
+      2,
+      "always"
+    ],
+    "key-spacing": [
+      2,
+      {
+        "afterColon": true
+      }
+    ],
+    "space-before-function-paren": [
+      2,
+      "always"
+    ],
+    "prefer-const": 2
+  }
+}

@@ -19,7 +19,11 @@
     "generators/template"
   ],
   "scripts": {
-    "test": "grunt test"
+    "test": "nyc mocha 'test/**/*.test.js'",
+    "posttest": "npm run coverage",
+    "lint": "eslint .",
+    "coverage": "nyc report --reporter=html",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -44,11 +48,11 @@
     "yeoman-generator": "^0.22.5"
   },
   "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-contrib-jshint": "^1.0.0",
-    "grunt-jscs": "^2.8.0",
-    "grunt-mocha-test": "^0.12.7",
-    "mocha": "^2.4.5",
+    "coveralls": "^2.13.1",
+    "mocha": "^2.5.3",
+    "mocha-eslint": "^3.0.1",
+    "mocha-junit-reporter": "^1.13.0",
+    "nyc": "^11.0.3",
     "sinon": "^1.17.3",
     "yeoman-assert": "^2.2.0",
     "yeoman-test": "^1.1.0"

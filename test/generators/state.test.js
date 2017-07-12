@@ -1,11 +1,10 @@
-'use strict';
-var path = require('path'),
+const path = require('path'),
     assert = require('yeoman-assert'),
     helpers = require('yeoman-test');
 
 describe('generator-angular-bro:state', function () {
     before(function (done) {
-        helpers.run(path.join(__dirname, '../generators/state'))
+        helpers.run(path.join(__dirname, '../../generators/state'))
             .withPrompts({componentPath: 'testModule'})
             .on('end', done);
     });
@@ -21,7 +20,7 @@ describe('generator-angular-bro:state', function () {
     });
 
     describe('generated module', function () {
-        var modulePath = 'app/test-module/module.js';
+        const modulePath = 'app/test-module/module.js';
 
         it('imports the state', function () {
             assert.fileContent(modulePath, /import \{ state \} from 'app\/test-module\/state';/);
@@ -49,7 +48,7 @@ describe('generator-angular-bro:state', function () {
     });
 
     describe('generated state', function () {
-        var statePath = 'app/test-module/state.js';
+        const statePath = 'app/test-module/state.js';
 
         it('uses the correct state name', function () {
             assert.fileContent(statePath, /\n        url: '\/test-module',\n/);

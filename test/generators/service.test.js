@@ -1,11 +1,10 @@
-'use strict';
-var path = require('path'),
+const path = require('path'),
     assert = require('yeoman-assert'),
     helpers = require('yeoman-test');
 
 describe('generator-angular-bro:service', function () {
     before(function (done) {
-        helpers.run(path.join(__dirname, '../generators/service'))
+        helpers.run(path.join(__dirname, '../../generators/service'))
             .withPrompts({componentPath: 'testModule'})
             .on('end', done);
     });
@@ -19,7 +18,7 @@ describe('generator-angular-bro:service', function () {
     });
 
     describe('generated module', function () {
-        var modulePath = 'app/test-module/module.js';
+        const modulePath = 'app/test-module/module.js';
 
         it('imports the service', function () {
             assert.fileContent(modulePath, /import \{ service \} from 'app\/test-module\/service';/);

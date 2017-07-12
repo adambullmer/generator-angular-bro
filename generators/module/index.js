@@ -23,9 +23,9 @@ module.exports = generators.Base.extend({
         this.fromProvider   = options.fromProvider;
 
         this.argument('componentPath', {
-            type     : String,
-            desc     : this.componentType + ' path and name (e.g. `user` or a nested `account/user`)',
-            required : false
+            type: String,
+            desc: this.componentType + ' path and name (e.g. `user` or a nested `account/user`)',
+            required: false
         });
 
         if (this.componentPath !== undefined) {
@@ -42,10 +42,10 @@ module.exports = generators.Base.extend({
 
     ask: function () {
         var prompts = [{
-                type     : 'input',
-                name     : 'componentPath',
-                message  : this.componentType + ' name',
-                validate : function (componentPath) {
+                type: 'input',
+                name: 'componentPath',
+                message: this.componentType + ' name',
+                validate: function (componentPath) {
                     if (!componentPath) {
                         return this.componentType + ' name is required';
                     }
