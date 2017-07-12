@@ -1,18 +1,18 @@
 version: 2
 jobs:
     build:
-        working_directory: ~/generator-angular-bro
+        working_directory: /generator-angular-bro
         docker:
-            - image: circleci/node:6.11.0
+            - image: adambullmer/circleci-node:6.10.3
         steps:
             - checkout
             - run:
-                name: update-npm
-                command: 'sudo npm install -g npm@^4'
+                name: npm-config
+                command: 'npm config set progress=false'
             - restore_cache:
                 key: dependency-cache-{{ checksum "package.json" }}
             - run:
-                name: install-npm-wee
+                name: install-npm
                 command: npm install
             - save_cache:
                 key: dependency-cache-{{ checksum "package.json" }}
@@ -20,9 +20,9 @@ jobs:
                     - .node_modules
 
     test:
-        working_directory: ~/generator-angular-bro
+        working_directory: /generator-angular-bro
         docker:
-            - image: circleci/node:6.11.0
+            - image: adambullmer/circleci-node:6.10.3
         steps:
             - run:
                 name: unit-tests
@@ -41,9 +41,9 @@ jobs:
                 prefix: coverage
 
     deploy:
-        working_directory: ~/generator-angular-bro
+        working_directory: /generator-angular-bro
         docker:
-            - image: circleci/node:6.11.0
+            - image: adambullmer/circleci-node:6.10.3
         steps:
             - run:
                 name: prep-node-credentials
