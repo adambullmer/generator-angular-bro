@@ -34,16 +34,15 @@ jobs:
                 at: /generator-angular-bro
             - run:
                 name: unit-tests
-                command: npm test -- --reporter mocha-junit-reporter --reporter-options mochaFile=junit.xml
+                command: npm test -- --reporter mocha-junit-reporter --reporter-options mochaFile=./junit.xml
             - run:
                 name: collect-coverage
                 command: npm run coverage -- --report-dir coverage/
             - run:
                 name: report-coveralls-coverage
                 command: npm run coveralls
-            - store_artifacts:
-                path: junit.xml
-                prefix: tests
+            - store_test_results:
+                path: .
             - store_artifacts:
                 path: coverage
                 prefix: coverage
