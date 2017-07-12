@@ -1,9 +1,12 @@
+defaults: &defaults
+    working_directory: /generator-angular-bro
+    docker:
+        - image: adambullmer/circleci-node:6.10.3
+
 version: 2
 jobs:
     build:
-        working_directory: /generator-angular-bro
-        docker:
-            - image: adambullmer/circleci-node:6.10.3
+        <<: *defaults
         steps:
             - checkout
             - run:
@@ -18,12 +21,17 @@ jobs:
                 key: dependency-cache-{{ checksum "package.json" }}
                 paths:
                     - .node_modules
+            - persist_to_workspace:
+                root: .
+                paths:
+                    - node_modules
 
     test:
-        working_directory: /generator-angular-bro
-        docker:
-            - image: adambullmer/circleci-node:6.10.3
+        <<: *defaults
         steps:
+            - checkout
+            - attach_workspace:
+                at: /generator-angular-bro
             - run:
                 name: unit-tests
                 command: npm test -- --reporter mocha-junit-reporter --reporter-options mochaFile=junit.xml
@@ -41,10 +49,9 @@ jobs:
                 prefix: coverage
 
     deploy:
-        working_directory: /generator-angular-bro
-        docker:
-            - image: adambullmer/circleci-node:6.10.3
+        <<: *defaults
         steps:
+            - checkout
             - run:
                 name: prep-node-credentials
                 command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
