@@ -34,7 +34,7 @@ jobs:
                 at: /generator-angular-bro
             - run:
                 name: unit-tests
-                command: npm run test -- --reporter xunit | grep '<' > /generator-angular-bro/junit.xml
+                command: npm run test -- --reporter xunit | grep '<' > /generator-angular-bro/junit/junit.xml
             - run:
                 name: collect-coverage
                 command: npm run coverage -- --report-dir coverage/
@@ -42,7 +42,7 @@ jobs:
                 name: report-coveralls-coverage
                 command: npm run coveralls
             - store_test_results:
-                path: .
+                path: /generator-angular-bro/junit
             - store_artifacts:
                 path: coverage
                 prefix: coverage
