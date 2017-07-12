@@ -33,11 +33,8 @@ jobs:
             - attach_workspace:
                 at: /generator-angular-bro
             - run:
-                name: create-junit-dir
-                command: mkdir junit
-            - run:
                 name: unit-tests
-                command: MOCHA_FILE=$CIRCLE_TEST_REPORTS/junit/test-results.xml npm run test -- --reporter mocha-junit-reporter
+                command: npm run test -- --reporter mocha-junit-reporter --reporterOptions mochaFile=$(pwd)/junit/test-results.xml
             - run:
                 name: collect-coverage
                 command: npm run coverage -- --report-dir coverage/
