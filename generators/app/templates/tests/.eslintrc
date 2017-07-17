@@ -1,0 +1,14 @@
+{
+    "env": {
+        "es6": true,
+        "jasmine": true
+    },
+    "extends": "../.eslintrc",
+    "rules": {
+        "prefer-arrow-callback": "off",
+        "global-require": "off",
+        "no-invalid-this": "off",
+        "no-empty-function": "off",
+        "max-lines": "off"
+    }
+}
