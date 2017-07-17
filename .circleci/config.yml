@@ -32,6 +32,11 @@ jobs:
             - checkout
             - attach_workspace:
                 at: /generator-angular-bro
+            - restore_cache:
+                key: dependency-cache-{{ checksum "package.json" }}
+            - run:
+                name: install-npm
+                command: npm install
             - run:
                 name: unit-tests
                 command: npm run test -- --reporter mocha-junit-reporter --reporter-options mochaFile=$(pwd)/junit/test-results.xml

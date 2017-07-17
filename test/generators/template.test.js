@@ -9,6 +9,15 @@ describe('generator-angular-bro:template', function () {
             .on('end', done);
     });
 
+    after(function () {
+        const LINTER_SLOW = 1000,
+            lint = require('mocha-eslint'),
+            paths = [ './**/*.js' ],
+            options = { slow: LINTER_SLOW };
+
+        lint(paths, options);
+    });
+
     it('creates files', function () {
         assert.file([
             'app/test-module/template.html'

@@ -139,6 +139,11 @@ module.exports = generators.Base.extend({
 
         tests: function () {
             this.fs.copy(
+                this.templatePath('tests/.eslintrc'),
+                this.destinationPath('tests/.eslintrc')
+            );
+
+            this.fs.copy(
                 this.templatePath('tests/e2e/.gitkeep'),
                 this.destinationPath('tests/e2e/.gitkeep')
             );
