@@ -1,6 +1,10 @@
 const path = require('path'),
     assert = require('yeoman-assert'),
-    helpers = require('yeoman-test');
+    helpers = require('yeoman-test'),
+    fileList = [
+        'app/test-module/controller.js',
+        'tests/unit/test-module/controller.spec.js',
+    ];
 
 describe('generator-angular-bro:controller', function () {
     before(function (done) {
@@ -19,22 +23,30 @@ describe('generator-angular-bro:controller', function () {
     });
 
     it('creates files', function () {
-        assert.file([
-            'app/test-module/controller.js',
-            'app/test-module/module.js',
-            'tests/unit/test-module/controller.spec.js'
-        ]);
+        assert.file(fileList);
     });
 
     describe('generated module', function () {
-        var modulePath = 'app/test-module/module.js';
+        var modulePath = 'app/test-module/controller.js';
 
-        it('imports the controller', function () {
-            assert.fileContent(modulePath, /import \{ controller \} from 'app\/test-module\/controller';/);
+        it('uses the correct controller name', function () {
+            assert.fileContent(modulePath, /class TestModuleController \{/);
         });
 
-        it('uses the controller', function () {
-            assert.fileContent(modulePath, /.controller\('TestModuleCtrl', controller\)/);
+        it('uses the controller decorator', function () {
+            assert.fileContent(modulePath, /@controller/);
         });
+    });
+});
+
+describe('genreator-angular-bro:controller test-module', function () {
+    before(function (done) {
+        helpers.run(path.join(__dirname, '../../generators/controller'))
+            .withArguments('test-module')
+            .on('end', done);
+    });
+
+    it('creates files', function () {
+        assert.file(fileList);
     });
 });

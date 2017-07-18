@@ -1,18 +1,18 @@
-var _                  = require('underscore.string'),
-    generators         = require('yeoman-generator'),
-    parseComponentName = require('../../lib/parse-component-name');
+const generators         = require('yeoman-generator'),
+    parseComponentName = require('../../lib/parse-component-name'),
+    _                  = require('underscore.string');
 
 module.exports = generators.Base.extend({
     componentType: 'Factory',
     generateTest: true,
 
-    constructor: function (/* componentPath, options */) {
+    constructor: function () {
         generators.Base.apply(this, arguments);
 
         this.argument('componentPath', {
             type: String,
-            desc: this.componentType + ' path and name (e.g. `user` or a nested `account/user`)',
-            required: false
+            desc: `${this.componentType} path and name (e.g. 'user' or a nested 'account/user')`,
+            required: false,
         });
 
         if (this.componentPath !== undefined) {
@@ -28,26 +28,26 @@ module.exports = generators.Base.extend({
     },
 
     ask: function () {
-        var prompts = [{
-                type: 'input',
-                name: 'componentPath',
-                message: this.componentType + ' name',
-                validate: function (componentPath) {
-                    if (!componentPath) {
-                        return this.componentType + ' name is required';
-                    }
+        const prompts = [{
+            type: 'input',
+            name: 'componentPath',
+            message: `${this.componentType} name`,
+            validate: (componentPath) => {
+                if (!componentPath) {
+                    return `${this.componentType} name is required`;
+                }
 
-                    return true;
-                }.bind(this)
-            }],
-            done;
+                return true;
+            }
+        }];
+        let done = null;
 
         if (this.componentName !== undefined) {
             return;
         }
 
         done = this.async();
-        this.prompt(prompts, function (props) {
+        this.prompt(prompts, (props) => {
             this.componentPath = props.componentPath;
             this.componentPath = _.dasherize(this.componentPath);
 
@@ -59,45 +59,32 @@ module.exports = generators.Base.extend({
             this.componentName = _.camelize(this.componentName);
 
             done();
-        }.bind(this));
+        });
     },
 
     writing: {
         component: function () {
-            var componentLowerCase = this.componentType.toLowerCase();
+            const componentLowerCase = this.componentType.toLowerCase();
 
             this.fs.copyTpl(
-                this.templatePath(componentLowerCase + '.js'),
-                this.destinationPath('app/' + this.componentPath + '/' + componentLowerCase + '.js'),
+                this.templatePath(`${componentLowerCase}.js`),
+                this.destinationPath(`app/${this.componentPath}/${componentLowerCase}.js`),
                 this
             );
         },
 
         componentTest: function () {
-            var componentLowerCase = this.componentType.toLowerCase();
+            const componentLowerCase = this.componentType.toLowerCase();
 
             if (this.generateTest === false) {
                 return;
             }
 
             this.fs.copyTpl(
-                this.templatePath(componentLowerCase + '.spec.js'),
-                this.destinationPath('tests/unit/' + this.componentPath + '/' + componentLowerCase + '.spec.js'),
+                this.templatePath(`${componentLowerCase}.spec.js`),
+                this.destinationPath(`tests/unit/${this.componentPath}/${componentLowerCase}.spec.js`),
                 this
             );
-        },
-
-        module: function () {
-            this.composeWith('angular-bro:module', {
-                args: [this.componentPath],
-                options: {
-                    fromFactory: true,
-                }
-            }, {
-                local: require.resolve('../module'),
-                link: 'weak'
-            });
         }
     }
 });
-

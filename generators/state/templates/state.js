@@ -1,14 +1,8 @@
-import { controller } from 'app/<%= componentPath %>/controller';
+// eslint-disable-next-line no-unused-vars
+import { state, inject } from 'app/decorators';
 
-function State ($stateProvider) {
-    'use strict';
-    'ngInject';
-
-    $stateProvider.state('<%= componentPath %>', {
-        url: '/<%= componentPath %>',
-        templateUrl: '<%= componentPath %>/template.html',
-        controller: controller
-    });
+@state('<%= componentPath %>', {})
+@inject()
+export default class <%= classComponentName %>State {
+    constructor () { }
 }
-
-exports.state = State;

@@ -1,12 +1,10 @@
-import angular from 'angular';
-import config from 'config/environment';
+// eslint-disable-next-line no-unused-vars
+import { config, inject } from 'app/decorators';
 
-angular.module('router', [
-    'ui.router'
-])
-.config(function ($locationProvider) {
-    "ngInject";
-    "use strict";
-
-    $locationProvider.html5Mode(config.html5Mode);
-});
+@config
+@inject('$locationProvider')
+export default class Router {
+    constructor ($locationProvider) {
+        $locationProvider.html5Mode(true);
+    }
+}

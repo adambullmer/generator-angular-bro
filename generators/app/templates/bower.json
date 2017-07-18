@@ -15,11 +15,15 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.5.7",
+    "angular": "1.6.5",
+    "angular-bro-decorators": "1.0.0",
     "angular-shim": "2.0.0",
-    "angular-ui-router": "^0.2.18"
+    "angular-ui-router": "1.0.5"
   },
   "devDependencies": {
-    "angular-mocks": "1.5.7"
+    "angular-mocks": "1.6.5"
+  },
+  "resolutions": {
+    "angular": "1.6.5"
   }
 }

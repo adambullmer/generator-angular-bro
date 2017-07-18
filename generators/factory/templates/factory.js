@@ -1,8 +1,8 @@
-function Factory () {
-    'use strict';
-    'ngInject';
+// eslint-disable-next-line no-unused-vars
+import { factory, inject } from 'app/decorators';
 
-    return {};
+@factory
+@inject()
+export default class <%= classComponentName %>Factory {
+    constructor () { }
 }
-
-exports.factory = Factory;

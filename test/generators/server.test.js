@@ -26,7 +26,7 @@ describe('generator-angular-bro:server', function () {
         assert.file([
             'server/index.js',
             'server/mocks/.gitkeep',
-            'server/proxies/.gitkeep'
+            'server/proxies/.gitkeep',
         ]);
     });
 
