@@ -1,16 +1,10 @@
 import angular from 'angular';
-import 'app/router';
 import <%= appName %>Module from 'app/<%= hyphenName %>';
 
-var app = angular.module('app', [
-    'router',
-    <%= appName %>Module.name
-]);
+const app = angular.module('app', [ <%= appName %>Module.name ]);
 
-angular.element(document).ready(function () {
-    angular.bootstrap(document, [
-        app.name
-    ], {
-        strictDi: true
-    });
+angular.element(document).ready(() => {
+    angular.bootstrap(document, [ app.name ], { strictDi: true });
 });
+
+export default app;

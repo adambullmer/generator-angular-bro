@@ -1,18 +1,16 @@
-module.exports = function (app) {
-    var express = require('express'),
-        router  = express.Router();
+module.exports = (app) => {
+    const express = require('express'),
+        router = express.Router();
 
-    router.get('/', function (req, res) {
-        res.send({
-            '<%= componentName %>': []
-        });
+    router.get('/', (req, res) => {
+        res.send({ '<%= componentName %>': [] });
     });
 
-    router.post('/', function (req, res) {
+    router.post('/', (req, res) => {
         res.status(201).end();
     });
 
-    router.get('/:id', function (req, res) {
+    router.get('/:id', (req, res) => {
         res.send({
             '<%= componentName %>': {
                 id: req.params.id
@@ -20,7 +18,7 @@ module.exports = function (app) {
         });
     });
 
-    router.put('/:id', function (req, res) {
+    router.put('/:id', (req, res) => {
         res.send({
             '<%= componentName %>': {
                 id: req.params.id
@@ -28,7 +26,7 @@ module.exports = function (app) {
         });
     });
 
-    router.delete('/:id', function (req, res) {
+    router.delete('/:id', (req, res) => {
         res.status(204).end();
     });
 

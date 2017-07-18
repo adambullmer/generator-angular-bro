@@ -1,6 +1,9 @@
 const path = require('path'),
     assert = require('yeoman-assert'),
-    helpers = require('yeoman-test');
+    helpers = require('yeoman-test'),
+    fileList = [
+        'app/test-module/template.html',
+    ];
 
 describe('generator-angular-bro:template', function () {
     before(function (done) {
@@ -9,18 +12,19 @@ describe('generator-angular-bro:template', function () {
             .on('end', done);
     });
 
-    after(function () {
-        const LINTER_SLOW = 1000,
-            lint = require('mocha-eslint'),
-            paths = [ './**/*.js' ],
-            options = { slow: LINTER_SLOW };
+    it('creates files', function () {
+        assert.file(fileList);
+    });
+});
 
-        lint(paths, options);
+describe('genreator-angular-bro:template test-module', function () {
+    before(function (done) {
+        helpers.run(path.join(__dirname, '../../generators/template'))
+            .withArguments('test-module')
+            .on('end', done);
     });
 
     it('creates files', function () {
-        assert.file([
-            'app/test-module/template.html'
-        ]);
+        assert.file(fileList);
     });
 });

@@ -1,22 +1,17 @@
 import 'app/<%= componentPath %>/module';
+import app from 'app/<%= hyphenComponentName %>';
 
 describe('<%= classComponentName %> <%= componentType %>', function () {
-    'use strict';
+    let $controller;
 
-    var $controller;
+    beforeEach(module(app.name));
 
-    <%- (fromState === true) ? "beforeEach(module('ui.router'));" : '' %>
-    beforeEach(module('<%= componentName %>'));
-
-    beforeEach(inject(function (_$controller_) {
+    beforeEach(inject(function (_<%= classComponentName %>Controller_) {
         // The injector unwraps the underscores (_) from around the parameter names when matching
-        $controller = _$controller_;
+        $controller = _$<%= classComponentName %>Controller_;
     }));
 
     it('exists', inject(function ($controller) {
-        var controller = $controller('<%= classComponentName %>Ctrl', {
-        });
-
-        expect(controller).toBeDefined();
+        expect($controller).toBeDefined();
     }));
 });

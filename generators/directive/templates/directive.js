@@ -1,16 +1,11 @@
-import { controller } from 'app/<%= componentPath %>/controller';
+// eslint-disable-next-line no-unused-vars
+import { directive, inject } from 'app/decorators';
 
-function Directive () {
-    'use strict';
-    'ngInject';
-
-    return {
-
-        restrict: 'AECM',
-        templateUrl: '<%= componentPath %>/template.html',
-        controller: controller
-
-    };
+@directive({
+    restrict: 'AECM',
+    templateUrl: '<%= componentPath %>/template.html',
+})
+@inject()
+export default class <%= classComponentName %> {
+    constructor () { }
 }
-
-exports.directive = Directive;

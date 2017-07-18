@@ -8,8 +8,8 @@ describe('<%= classComponentName %> <%= componentType %>', function () {
     beforeEach(module('<%= componentName %>'));
 
     beforeEach(function () {
-        module(function (<%= componentName %>Provider) {
-            $provider = <%= componentName %>Provider;
+        module(function (_<%= componentName %>Provider_) {
+            $provider = _<%= componentName %>Provider_;
         });
     });
 

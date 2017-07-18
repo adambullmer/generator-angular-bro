@@ -1,10 +1,8 @@
-function Provider () {
-    'use strict';
-    'ngInject';
+// eslint-disable-next-line no-unused-vars
+import { provider, inject } from 'app/decorators';
 
-    this.$get = function () {
-
-    };
+@provider
+@inject()
+export default class <%= classComponentName %>Provider {
+    constructor () { }
 }
-
-exports.provider = Provider;

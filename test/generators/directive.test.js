@@ -1,6 +1,11 @@
 const path = require('path'),
     assert = require('yeoman-assert'),
-    helpers = require('yeoman-test');
+    helpers = require('yeoman-test'),
+    fileList = [
+        'app/test-module/directive.js',
+        'app/test-module/template.html',
+        'tests/unit/test-module/directive.spec.js',
+    ];
 
 describe('generator-angular-bro:directive', function () {
     before(function (done) {
@@ -19,57 +24,30 @@ describe('generator-angular-bro:directive', function () {
     });
 
     it('creates files', function () {
-        assert.file([
-            'app/test-module/directive.js',
-            'app/test-module/controller.js',
-            'app/test-module/module.js',
-            'app/test-module/template.html',
-            'tests/unit/test-module/directive.spec.js',
-            'tests/unit/test-module/controller.spec.js'
-        ]);
+        assert.file(fileList);
     });
 
     describe('generated module', function () {
-        const modulePath = 'app/test-module/module.js';
+        const modulePath = 'app/test-module/directive.js';
 
-        it('imports the directive', function () {
-            assert.fileContent(modulePath, /import \{ directive \} from 'app\/test-module\/directive';/);
+        it('uses the correct directive name', function () {
+            assert.fileContent(modulePath, /class TestModule \{/);
         });
 
-        it('imports the controller', function () {
-            assert.fileContent(modulePath, /import \{ controller \} from 'app\/test-module\/controller';/);
-        });
-
-        it('imports the template module', function () {
-            assert.fileContent(modulePath, /import 'app\/scripts\/templates';/);
-        });
-
-        it('uses the directive', function () {
-            assert.fileContent(modulePath, /.directive\('testModule', directive\)/);
-        });
-
-        it('uses the controller', function () {
-            assert.fileContent(modulePath, /.controller\('TestModuleCtrl', controller\)/);
-        });
-
-        it('uses the template cache', function () {
-            assert.fileContent(modulePath, /\n    'templates-app'\n/);
+        it('uses the directive decorator', function () {
+            assert.fileContent(modulePath, /@directive\(/);
         });
     });
+});
 
-    describe('generated directive', function () {
-        const directivePath = 'app/test-module/directive.js';
+describe('genreator-angular-bro:directive test-module', function () {
+    before(function (done) {
+        helpers.run(path.join(__dirname, '../../generators/directive'))
+            .withArguments('test-module')
+            .on('end', done);
+    });
 
-        it('imports the controller', function () {
-            assert.fileContent(directivePath, /import \{ controller \} from 'app\/test-module\/controller';/);
-        });
-
-        it('uses the controller', function () {
-            assert.fileContent(directivePath, /        controller: controller/);
-        });
-
-        it('uses the generated template path', function () {
-            assert.fileContent(directivePath, /\n        templateUrl: 'test-module\/template.html',\n/);
-        });
+    it('creates files', function () {
+        assert.file(fileList);
     });
 });

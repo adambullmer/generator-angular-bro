@@ -1,6 +1,10 @@
 const path = require('path'),
     assert = require('yeoman-assert'),
-    helpers = require('yeoman-test');
+    helpers = require('yeoman-test'),
+    fileList = [
+        'app/test-module/service.js',
+        'tests/unit/test-module/service.spec.js',
+    ];
 
 describe('generator-angular-bro:service', function () {
     before(function (done) {
@@ -19,22 +23,30 @@ describe('generator-angular-bro:service', function () {
     });
 
     it('creates files', function () {
-        assert.file([
-            'app/test-module/service.js',
-            'app/test-module/module.js',
-            'tests/unit/test-module/service.spec.js',
-        ]);
+        assert.file(fileList);
     });
 
     describe('generated module', function () {
-        const modulePath = 'app/test-module/module.js';
+        const modulePath = 'app/test-module/service.js';
 
-        it('imports the service', function () {
-            assert.fileContent(modulePath, /import \{ service \} from 'app\/test-module\/service';/);
+        it('uses the correct service name', function () {
+            assert.fileContent(modulePath, /class TestModuleService \{/);
         });
 
-        it('uses the service', function () {
-            assert.fileContent(modulePath, /.service\('TestModuleService', service\)/);
+        it('uses the service decorator', function () {
+            assert.fileContent(modulePath, /@service/);
         });
+    });
+});
+
+describe('genreator-angular-bro:service test-module', function () {
+    before(function (done) {
+        helpers.run(path.join(__dirname, '../../generators/service'))
+            .withArguments('test-module')
+            .on('end', done);
+    });
+
+    it('creates files', function () {
+        assert.file(fileList);
     });
 });

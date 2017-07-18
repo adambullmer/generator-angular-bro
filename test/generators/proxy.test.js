@@ -1,6 +1,9 @@
 const path = require('path'),
     assert = require('yeoman-assert'),
-    helpers = require('yeoman-test');
+    helpers = require('yeoman-test'),
+    fileList = [
+        'server/proxies/testModule.js',
+    ];
 
 describe('generator-angular-bro:proxy', function () {
     before(function (done) {
@@ -22,8 +25,18 @@ describe('generator-angular-bro:proxy', function () {
     });
 
     it('creates files', function () {
-        assert.file([
-            'server/proxies/testModule.js'
-        ]);
+        assert.file(fileList);
+    });
+});
+
+describe('genreator-angular-bro:proxy testModule proxy/target', function () {
+    before(function (done) {
+        helpers.run(path.join(__dirname, '../../generators/proxy'))
+            .withArguments('testModule', 'proxy/target')
+            .on('end', done);
+    });
+
+    it('creates files', function () {
+        assert.file(fileList);
     });
 });
