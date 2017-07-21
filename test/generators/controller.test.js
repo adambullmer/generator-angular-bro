@@ -1,52 +1,67 @@
 const path = require('path'),
     assert = require('yeoman-assert'),
     helpers = require('yeoman-test'),
+    generatorPath = path.join(__dirname, '../../generators/controller'),
     fileList = [
         'app/test-module/controller.js',
         'tests/unit/test-module/controller.spec.js',
     ];
 
 describe('generator-angular-bro:controller', function () {
-    before(function (done) {
-        helpers.run(path.join(__dirname, '../../generators/controller'))
-            .withPrompts({componentPath: 'testModule'})
-            .on('end', done);
-    });
-
     after(function () {
-        const LINTER_SLOW = 1000,
-            lint = require('mocha-eslint'),
-            paths = [ './**/*.js' ],
-            options = { slow: LINTER_SLOW };
+        let outputDir = null;
 
-        lint(paths, options);
+        return helpers.run(generatorPath)
+            .inTmpDir(function (tempDirectory) {
+                outputDir = tempDirectory;
+            })
+            .withPrompts({ componentPath: 'testApp' })
+            .then(() => {
+                const LINTER_SLOW = 1000,
+                    lint = require('mocha-eslint'),
+                    paths = [ `**/*.js` ],
+                    options = { slow: LINTER_SLOW };
+
+                process.chdir(outputDir);
+                lint(paths, options);
+            });
     });
 
     it('creates files', function () {
-        assert.file(fileList);
+        return helpers.run(generatorPath)
+            .withPrompts({ componentPath: 'testModule' })
+            .then(function () {
+                assert.file(fileList);
+            });
     });
 
     describe('generated module', function () {
-        var modulePath = 'app/test-module/controller.js';
+        const modulePath = 'app/test-module/controller.js';
 
         it('uses the correct controller name', function () {
-            assert.fileContent(modulePath, /class TestModuleController \{/);
+            return helpers.run(generatorPath)
+                .withPrompts({ componentPath: 'testModule' })
+                .then(function () {
+                    assert.fileContent(modulePath, /class TestModuleController \{/);
+                });
         });
 
         it('uses the controller decorator', function () {
-            assert.fileContent(modulePath, /@controller/);
+            return helpers.run(generatorPath)
+                .withPrompts({ componentPath: 'testModule' })
+                .then(function () {
+                    assert.fileContent(modulePath, /@controller/);
+                });
         });
     });
 });
 
 describe('genreator-angular-bro:controller test-module', function () {
-    before(function (done) {
-        helpers.run(path.join(__dirname, '../../generators/controller'))
-            .withArguments('test-module')
-            .on('end', done);
-    });
-
     it('creates files', function () {
-        assert.file(fileList);
+        return helpers.run(generatorPath)
+            .withArguments([ 'test-module' ])
+            .then(function () {
+                assert.file(fileList);
+            });
     });
 });

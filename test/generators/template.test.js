@@ -1,30 +1,27 @@
 const path = require('path'),
     assert = require('yeoman-assert'),
     helpers = require('yeoman-test'),
+    generatorPath = path.join(__dirname, '../../generators/template'),
     fileList = [
         'app/test-module/template.html',
     ];
 
 describe('generator-angular-bro:template', function () {
-    before(function (done) {
-        helpers.run(path.join(__dirname, '../../generators/template'))
-            .withPrompts({componentPath: 'testModule'})
-            .on('end', done);
-    });
-
     it('creates files', function () {
-        assert.file(fileList);
+        return helpers.run(generatorPath)
+            .withPrompts({componentPath: 'testModule'})
+            .then(() => {
+                assert.file(fileList);
+            });
     });
 });
 
 describe('genreator-angular-bro:template test-module', function () {
-    before(function (done) {
-        helpers.run(path.join(__dirname, '../../generators/template'))
-            .withArguments('test-module')
-            .on('end', done);
-    });
-
     it('creates files', function () {
-        assert.file(fileList);
+        return helpers.run(generatorPath)
+            .withArguments([ 'test-module' ])
+            .then(() => {
+                assert.file(fileList);
+            });
     });
 });

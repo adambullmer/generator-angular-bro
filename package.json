@@ -44,17 +44,19 @@
   "dependencies": {
     "extend": "^3.0.0",
     "generator-node": "^1.10.0",
+    "save-dev": "^2.0.0",
     "underscore.string": "^3.3.4",
-    "yeoman-generator": "^0.22.5"
+    "yeoman-generator": "^1.0.0",
+    "yeoman-test": "^1.7.0"
   },
   "devDependencies": {
+    "babel-eslint": "^7.2.3",
     "coveralls": "^2.13.1",
     "mocha": "^3.2.0",
     "mocha-eslint": "^3.0.1",
     "mocha-junit-reporter": "^1.13.0",
     "nyc": "^11.0.3",
     "sinon": "^1.17.3",
-    "yeoman-assert": "^2.2.0",
-    "yeoman-test": "^1.1.0"
+    "yeoman-assert": "^2.2.0"
   }
 }
